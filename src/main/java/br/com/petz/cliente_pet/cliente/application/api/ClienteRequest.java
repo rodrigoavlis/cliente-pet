@@ -8,25 +8,36 @@ import br.com.petz.cliente_pet.cliente.domain.Sexo;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Value;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Value
-public class clienteRequest {
+@Getter
+@Setter
+@NoArgsConstructor
+public class ClienteRequest {
 
 	@NotBlank
 	private String nomeCompleto;
+
 	@NotBlank
 	@Email
 	private String email;
+
 	@NotBlank
 	private String celular;
+
 	private String telefone;
+
 	private Sexo sexo;
+
 	@NotNull
 	private LocalDate dataDeNascimento;
+
+	@NotBlank
 	@CPF
 	private String cpf;
+
 	@NotNull
 	private Boolean aceitaTermos;
-
 }

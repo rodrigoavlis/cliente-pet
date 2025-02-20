@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import br.com.petz.cliente_pet.cliente.application.api.clienteRequest;
+import br.com.petz.cliente_pet.cliente.application.api.ClienteRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -47,14 +47,14 @@ public class Cliente {
 	private LocalDateTime dataHoraDaUltimaAlteracao;
 	
 
-	public Cliente(clienteRequest clienteRequest) {
+	public Cliente(ClienteRequest clienteRequest) {
 		this.nomeCompleto = clienteRequest.getNomeCompleto();
 		this.email = clienteRequest.getEmail();
 		this.celular = clienteRequest.getCelular();
 		this.telefone = clienteRequest.getTelefone();
 		this.sexo = clienteRequest.getSexo();
 		this.dataDeNascimento = clienteRequest.getDataDeNascimento();
-		this.cpf = clienteRequest.getCelular();
+		this.cpf = clienteRequest.getCpf();
 		this.aceitaTermos = clienteRequest.getAceitaTermos();
 		this.dataHoraDoCadrastro = LocalDateTime.now();
 	}
