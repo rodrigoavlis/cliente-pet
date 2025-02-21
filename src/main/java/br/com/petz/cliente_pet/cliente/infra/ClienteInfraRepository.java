@@ -13,12 +13,12 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class ClienteInfraRepository implements ClienteRepository {
-	private final ClienteSpringDataJPARepository clienteSpringDataJPARepository;
+	private final ClienteSpringDataJPARepository clienteSprintDataJPARepository;
 
 	@Override
 	public Cliente salva(Cliente cliente) {
 		log.info("[inicia] ClienteInfraRepository - salva");
-		clienteSpringDataJPARepository.save(cliente);
+		clienteSprintDataJPARepository.save(cliente);
 		log.info("[Finaliza] ClienteInfraRepository - salva");
 		return cliente;
 	}
@@ -26,8 +26,9 @@ public class ClienteInfraRepository implements ClienteRepository {
 	@Override
 	public List<Cliente> buscaTodosClientes() {
 		log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
+		List<Cliente> todosClientes = clienteSprintDataJPARepository.findAll();
 		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
-		return null;
+		return todosClientes;
 	}
 
 }
