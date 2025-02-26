@@ -1,11 +1,14 @@
 package br.com.petz.cliente_pet.cliente.infra;
 
 import java.util.List;
+import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import br.com.petz.cliente_pet.cliente.application.repository.ClienteRepository;
 import br.com.petz.cliente_pet.cliente.domain.Cliente;
+import br.com.petz.cliente_pet.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -29,6 +32,15 @@ public class ClienteInfraRepository implements ClienteRepository {
 		List<Cliente> todosClientes = clienteSprintDataJPARepository.findAll();
 		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
 		return todosClientes;
+	}
+
+	@Override
+	public Cliente buscaClienteAtravesId(UUID idCliente) {
+		log.info("[inicia] ClienteInfraRepository - buscaTodosClientes");
+		Cliente cliente = clienteSprintDataJPARepository.findById(idCliente)
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+		log.info("[finaliza] ClienteInfraRepository - buscaTodosClientes");
+		return cliente;
 	}
 
 }
