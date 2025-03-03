@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import br.com.petz.cliente_pet.cliente.application.api.ClienteAlteracaoRequest;
 import br.com.petz.cliente_pet.cliente.application.api.ClienteDetalhadoResponse;
 import br.com.petz.cliente_pet.cliente.application.api.ClienteListResponse;
 import br.com.petz.cliente_pet.cliente.application.api.ClienteRequest;
@@ -23,9 +24,9 @@ public class ClienteApplicationService implements ClienteService {
 
 	@Override
 	public ClienteResponse criaCliente(ClienteRequest clienteRequest) {
-		log.info("[inicia] ClienteApplication - cliaCliente");
+		log.info("[inicia] ClienteApplication - criaCliente");
 		Cliente cliente =  clienteRepository.salva(new Cliente(clienteRequest));
-		log.info("[finaliza] ClienteApplication - cliaCliente");
+		log.info("[finaliza] ClienteApplication - criaCliente");
 		return ClienteResponse.builder()
 				.idCliente(cliente.getIdCliente())
 				.build();
@@ -55,6 +56,15 @@ public class ClienteApplicationService implements ClienteService {
 		log.info("[inicia] ClienteApplicationService - buscaTodosClientes");
 		
 		
+	}
+
+	@Override
+	public void patchAlteraCliente(UUID idCliente, ClienteAlteracaoRequest clienteAlteracaoRequest) {
+		log.info("[inicia] ClienteApplicationService - patchAlteraCliente");
+		Cliente cliente = clienteRepository.buscaClienteAtravesId(idCliente);
+		cliente.altera(clienteAlteracaoRequest);
+		clienteRepository.salva(cliente); 
+		log.info("[finaliza] ClienteApplicationService - patchAlteraCliente");
 	}
 
 }
