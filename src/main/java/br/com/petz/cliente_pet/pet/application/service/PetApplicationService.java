@@ -34,8 +34,9 @@ public class PetApplicationService implements PetService {
 	public List<PetClienteListResponse> buscaPetsDoClienteComId(UUID idCliente) {
 		log.info("[inicia] PetApplicationService - buscaPetsDoClienteComId");
 		clienteService.buscaClienteAtravsId(idCliente);
+		List<Pet> petsDoCliente = petRepository.buscaPetsDoClienteComId(idCliente);
 		log.info("[finaliza] PetApplicationService - buscaPetsDoClienteComId");
-		return null;
+		return PetClienteListResponse.converte(petsDoCliente);
 	}
 
 }
