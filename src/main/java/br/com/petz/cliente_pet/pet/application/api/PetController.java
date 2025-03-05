@@ -29,7 +29,9 @@ public class PetController implements PetAPI {
 	public List<PetClienteListResponse> getPetDoClienteComID(UUID idCliente) {
 		log.info("[inicia] PetController - getPetDoClienteComID");
 		log.info("[idCliente] {}", idCliente);
+		List<PetClienteListResponse> petsDoCliente = petService.buscaPetsDoClienteComId(idCliente);
+		log.info("[finaliza] PetController - getPetDoClienteComID");
 		
-		return null;
+		return petsDoCliente;
 	}
 }
