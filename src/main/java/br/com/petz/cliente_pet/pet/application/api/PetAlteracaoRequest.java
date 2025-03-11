@@ -8,10 +8,9 @@ import br.com.petz.cliente_pet.pet.domain.TipoPet;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Value;
-
+@Value
 public class PetAlteracaoRequest {
-	@Value
-	public class PetRequest {
+
 		@NotBlank
 		private String nomePet;
 		private Porte porte;
@@ -27,6 +26,6 @@ public class PetAlteracaoRequest {
 		private LocalDate dataDeNascimento;
 		private String rga;
 		private Integer peso;
-		
-	}
+
+	
 }
